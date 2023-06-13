@@ -1,4 +1,7 @@
 package com.booleanuk.movie.api.Repository;
 
-public class MovieRepository {
+import com.booleanuk.movie.api.Model.Movie;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MovieRepository extends JpaRepository<Movie, Integer> {
 }
