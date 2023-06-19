@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "release")
-public class Release {
+public class ReleaseYear {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,11 +13,11 @@ public class Release {
     @Column(name = "release_year")
     private Integer releaseYear;
 
-    public Release(){
+    public ReleaseYear(){
         super();
     }
 
-    public Release(Integer releaseYear){
+    public ReleaseYear(Integer releaseYear){
         super();
         this.setReleaseYear(releaseYear);
     }

@@ -1,8 +1,11 @@
 package com.booleanuk.movie.api.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import org.w3c.dom.Text;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "movies")
@@ -15,27 +18,29 @@ public class Movie {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "synopsis")
+    @Column(name = "synopsis", columnDefinition = "TEXT")
     private String synopsis;
 
-    @Column(name = "release_date")
-    private LocalDate releaseDate;
 
+    @ManyToMany
+    @JoinTable(
+            name = "movie_actor",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id")
+    )
+    @JsonIgnoreProperties("movies")
+    private List<Actor> actors;
 
-    @Column(name = "classification")
-    private String classification;
 
 
     public Movie(){
         super();
     }
 
-    public Movie(String title, String synopsis, LocalDate releaseDate, String classification){
+    public Movie(String title, String synopsis){
         super();
         this.setTitle(title);
         this.setSynopsis(synopsis);
-        this.setReleaseDate(releaseDate);
-        this.setClassification(classification);
     }
 
     public int getId() {
@@ -62,19 +67,11 @@ public class Movie {
         this.synopsis = synopsis;
     }
 
-    public LocalDate getReleaseDate() {
-        return releaseDate;
+    public List<Actor> getActors() {
+        return actors;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public String getClassification() {
-        return classification;
-    }
-
-    public void setClassification(String classification) {
-        this.classification = classification;
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
     }
 }

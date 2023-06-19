@@ -10,7 +10,7 @@ Back-end:
 
 Movie Listing and Details:
 
-- Database schema to store movie details: title, genre, description, release date, and availability 
+- Database schema to store movie details: title, genre, description, releaseYear date, and availability 
   status, synopsis, cast, and ratings.
 - Implement API endpoints to retrieve movie information and display them on the website.
 
