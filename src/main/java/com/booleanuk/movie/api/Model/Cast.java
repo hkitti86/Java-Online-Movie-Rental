@@ -1,38 +1,27 @@
 package com.booleanuk.movie.api.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 @Table(name = "movie_cast")
 public class Cast {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "movie")
-    private Movie movie;
+    @Column(name = "movie_id")
+    private int movieId;
 
-    @Column(name = "actor")
+    @ManyToOne
+    @JoinColumn(name = "actor_id")
     private Actor actor;
 
-    @ManyToMany(mappedBy = "movie_cast")
-    @JsonIgnoreProperties("movie_cast")
-    private List<Movie> movies;
-
-    @ManyToMany(mappedBy = "movie_cast")
-    @JsonIgnoreProperties("movie_cast")
-    private List<Actor> actors;
-
-    public Cast(){
-        super();
+    public Cast() {
     }
 
-    public Cast(Movie movie, Actor actor){
-        this.setMovie(movie);
-        this.setActor(actor);
+    public Cast(int movieId) {
+        this.movieId = movieId;
     }
 
     public int getId() {
@@ -43,12 +32,12 @@ public class Cast {
         this.id = id;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public int getMovieId() {
+        return movieId;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 
     public Actor getActor() {
@@ -57,19 +46,5 @@ public class Cast {
 
     public void setActor(Actor actor) {
         this.actor = actor;
-    }
-
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-    }
-
-    public List<Actor> getActors() {return actors;}
-
-    public void setActors(List<Actor> actors) {
-        this.actors = actors;
     }
 }

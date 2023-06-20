@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("actors")
 public class ActorController {
 
     @Autowired
@@ -23,9 +23,9 @@ public class ActorController {
     @Autowired
     private MovieRepository movieRepository;
 
-    @GetMapping("/movies/{id}/actors")
-    public List<Actor> getAllActors(@PathVariable int movieId) {
-        return this.actorRepository.findActorByMovieId(movieId);
+    @GetMapping
+    public List<Actor> getAllActors() {
+        return this.actorRepository.findAll();
     }
 
 //    @PostMapping("/actors")

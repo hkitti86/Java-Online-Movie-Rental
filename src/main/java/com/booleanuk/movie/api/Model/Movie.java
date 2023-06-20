@@ -22,14 +22,10 @@ public class Movie {
     private String synopsis;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "movie_cast",
-            joinColumns = @JoinColumn(name = "movie_id"),
-            inverseJoinColumns = @JoinColumn(name = "actor_id")
-    )
-    @JsonIgnoreProperties("movie")
-    private List<Cast> cast;
+//    @ManyToMany(mappedBy = "movies")
+//    @JsonIgnoreProperties("movies")
+//    private List<Cast> cast;
+
 
 
 
@@ -67,11 +63,11 @@ public class Movie {
         this.synopsis = synopsis;
     }
 
-    public List<Cast> getCast() {
-        return cast;
-    }
-
-    public void setCast(List<Cast> cast) {
-        this.cast = cast;
-    }
+//    public List<Cast> getCast() {
+//        return cast;
+//    }
+//
+//    public void setCast(List<Cast> cast) {
+//        this.cast = cast;
+//    }
 }
