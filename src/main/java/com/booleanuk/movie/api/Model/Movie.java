@@ -24,12 +24,12 @@ public class Movie {
 
     @ManyToMany
     @JoinTable(
-            name = "movie_actor",
+            name = "movie_cast",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "actor_id")
     )
-    @JsonIgnoreProperties("movies")
-    private List<Actor> actors;
+    @JsonIgnoreProperties("movie")
+    private List<Cast> cast;
 
 
 
@@ -67,11 +67,11 @@ public class Movie {
         this.synopsis = synopsis;
     }
 
-    public List<Actor> getActors() {
-        return actors;
+    public List<Cast> getCast() {
+        return cast;
     }
 
-    public void setActors(List<Actor> actors) {
-        this.actors = actors;
+    public void setCast(List<Cast> cast) {
+        this.cast = cast;
     }
 }

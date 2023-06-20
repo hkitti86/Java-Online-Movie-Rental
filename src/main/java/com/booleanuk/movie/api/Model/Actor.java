@@ -18,7 +18,7 @@ public class Actor {
 
     @ManyToMany(mappedBy = "actors")
     @JsonIgnoreProperties("actors")
-    private List<Movie> movies;
+    private List<Cast> cast;
 
 
 
@@ -52,7 +52,7 @@ public class Actor {
         this.name = name;
     }
 
-    public List<Movie> getMovies() {return movies;}
+    public List<Cast> getCast() {return cast;}
 
-    public void setMovies(List<Movie> movies) {this.movies = movies;}
+    public void setCast(List<Cast> cast) {this.cast = cast;}
 }

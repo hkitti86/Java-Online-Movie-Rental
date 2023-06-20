@@ -24,21 +24,23 @@ public class ActorController {
     private MovieRepository movieRepository;
 
     @GetMapping("/movies/{id}/actors")
-    public List<Actor> getAllActors(@PathVariable int id) {
-        return this.actorRepository.findActorByMovieId(id);
+    public List<Actor> getAllActors(@PathVariable int movieId) {
+        return this.actorRepository.findActorByMovieId(movieId);
     }
 
-    @PostMapping("/actors")
-    public ResponseEntity<List<Movie>> createActor(@RequestBody Actor actor) {
-        List<Movie> movies = this.movieRepository.findAll();
-        List<Movie> actorMovies = new ArrayList<>();
+//    @PostMapping("/actors")
+//    public ResponseEntity<List<Movie>> createActor(@RequestBody Actor actor, @RequestParam("movie_id") List<Integer> movieIds) {
+//        List<Movie> movies = this.movieRepository.findAll();
+//        List<Movie> actorMovies = new ArrayList<>();
+//
+//        for (Movie movie : movies) {
+//            if (movieIds.contains(movie.getId())) {
+//                movie.getActors().add(actor);
+//                actorMovies.add(movie);
+//            }
+//        }
+//
+//        return new ResponseEntity<>(actorMovies, HttpStatus.OK);
+//    }
 
-        for (Movie movie : movies) {
-            if (movie.getActors().contains(actor)) {
-                actorMovies.add(movie);
-            }
-        }
-
-        return new ResponseEntity<>(actorMovies, HttpStatus.OK);
-    }
 }
