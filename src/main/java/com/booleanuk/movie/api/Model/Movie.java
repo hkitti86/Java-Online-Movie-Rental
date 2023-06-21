@@ -18,8 +18,10 @@ public class Movie {
     @Column(name = "synopsis", columnDefinition = "TEXT")
     private String synopsis;
 
-    @Column(name = "release_year")
-    private int releaseYear;
+    @ManyToOne
+    @JoinColumn(name = "release_year")
+    @JsonIgnoreProperties("movies")
+    private ReleaseYear releaseYear;
 
     @ManyToOne
     @JoinColumn(name = "classification")
@@ -30,11 +32,10 @@ public class Movie {
         super();
     }
 
-    public Movie(String title, String synopsis, int releaseYear){
+    public Movie(String title, String synopsis){
         super();
         this.title = title;
         this.synopsis = synopsis;
-        this.releaseYear = releaseYear;
     }
 
     public int getId() {
@@ -77,12 +78,20 @@ public class Movie {
         return null;
     }
 
-    public int getReleaseYear() {
+    @JsonIgnore
+    public ReleaseYear getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(int releaseYear) {
+    public void setReleaseYear(ReleaseYear releaseYear) {
         this.releaseYear = releaseYear;
+    }
+
+    public int getReleaseYearOfMovie() {
+        if (releaseYear != null){
+            return releaseYear.getReleaseYear();
+        }
+        return 0;
     }
 
 }

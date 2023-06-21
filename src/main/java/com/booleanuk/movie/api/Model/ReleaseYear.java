@@ -3,6 +3,8 @@ package com.booleanuk.movie.api.Model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "release")
 public class ReleaseYear {
@@ -13,6 +15,10 @@ public class ReleaseYear {
 
     @Column(name = "release_year")
     private Integer releaseYear;
+
+    @OneToMany(mappedBy = "releaseYear")
+    @JsonIgnoreProperties("releaseYear")
+    private List<Movie> movies;
 
 
     public ReleaseYear(){
@@ -40,4 +46,11 @@ public class ReleaseYear {
         this.releaseYear = releaseYear;
     }
 
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
 }
