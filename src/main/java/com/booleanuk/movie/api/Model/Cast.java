@@ -1,5 +1,6 @@
 package com.booleanuk.movie.api.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,18 +13,20 @@ public class Cast {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "movie_id")
-    private int movieId;
-
     @ManyToOne
     @JoinColumn(name = "actor_id")
     private Actor actor;
 
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    @JsonIgnoreProperties("cast")
+    private Movie movie;
+
     public Cast() {
     }
 
-    public Cast(int movieId) {
-        this.movieId = movieId;
+    public Cast(Actor actor) {
+        this.actor = actor;
     }
 
     public int getId() {
@@ -34,14 +37,6 @@ public class Cast {
         this.id = id;
     }
 
-    public int getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
-    }
-
     public Actor getActor() {
         return actor;
     }
@@ -50,7 +45,13 @@ public class Cast {
         this.actor = actor;
     }
 
-    public void setActorNames(List<String> actorNames) {
+    public Movie getMovie() {
+        return movie;
     }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
 }
 

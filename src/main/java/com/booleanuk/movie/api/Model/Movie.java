@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "movies")
 public class Movie {
@@ -17,6 +19,10 @@ public class Movie {
 
     @Column(name = "synopsis", columnDefinition = "TEXT")
     private String synopsis;
+
+    @OneToMany(mappedBy = "movie")
+    @JsonIgnoreProperties("movie")
+    private List<Cast> cast;
 
     @ManyToOne
     @JoinColumn(name = "release_year")
@@ -60,6 +66,14 @@ public class Movie {
 
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
+    }
+
+    public List<Cast> getCast() {
+        return cast;
+    }
+
+    public void setCast(List<Cast> cast) {
+        this.cast = cast;
     }
 
     @JsonIgnore

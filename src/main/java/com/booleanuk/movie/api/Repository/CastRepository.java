@@ -1,6 +1,8 @@
 package com.booleanuk.movie.api.Repository;
 
+import com.booleanuk.movie.api.Model.Actor;
 import com.booleanuk.movie.api.Model.Cast;
+import com.booleanuk.movie.api.Model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -9,6 +11,6 @@ import java.util.Optional;
 
 public interface CastRepository extends JpaRepository<Cast, Integer> {
     List<Cast> findByMovieId(int movieId);
-    @Query("SELECT c.actor.name FROM Cast c WHERE c.movieId = :movieId")
-    List<String> findActorNamesByMovieId(int movieId);
+
+    List<Actor> findActorByMovieId(int movie_id);
 }

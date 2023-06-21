@@ -1,5 +1,6 @@
 package com.booleanuk.movie.api.Controller;
 
+import com.booleanuk.movie.api.Model.Actor;
 import com.booleanuk.movie.api.Model.Cast;
 
 import com.booleanuk.movie.api.Repository.CastRepository;
@@ -26,21 +27,21 @@ public class CastController {
         return this.castRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Cast> getCastById(@PathVariable int id) {
-        Optional<Cast> castOptional = castRepository.findById(id);
-
-        if (castOptional.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Cast cast = castOptional.get();
-
-        List<String> actorNames = castRepository.findActorNamesByMovieId(cast.getMovieId());
-        cast.setActorNames(actorNames);
-
-        return ResponseEntity.ok(cast);
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Cast> getCastById(@PathVariable int id) {
+//        Optional<Cast> castOptional = castRepository.findById(id);
+//
+//        if (castOptional.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        }
+//
+//        Cast cast = castOptional.get();
+//
+//        List<Actor> actorNames = castRepository.findActorNamesByMovieId(cast.getMovie());
+//        cast.setActor(actorNames);
+//
+//        return ResponseEntity.ok(cast);
+//    }
 
 
 }
