@@ -1,11 +1,8 @@
 package com.booleanuk.movie.api.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import org.w3c.dom.Text;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "movies")
@@ -21,22 +18,23 @@ public class Movie {
     @Column(name = "synopsis", columnDefinition = "TEXT")
     private String synopsis;
 
+    @Column(name = "release_year")
+    private int releaseYear;
 
-//    @ManyToMany(mappedBy = "movies")
-//    @JsonIgnoreProperties("movies")
-//    private List<Cast> cast;
-
-
-
+    @ManyToOne
+    @JoinColumn(name = "classification")
+    @JsonIgnoreProperties({"movies", "classification"})
+    private Classification classification;
 
     public Movie(){
         super();
     }
 
-    public Movie(String title, String synopsis){
+    public Movie(String title, String synopsis, int releaseYear){
         super();
-        this.setTitle(title);
-        this.setSynopsis(synopsis);
+        this.title = title;
+        this.synopsis = synopsis;
+        this.releaseYear = releaseYear;
     }
 
     public int getId() {
@@ -63,11 +61,28 @@ public class Movie {
         this.synopsis = synopsis;
     }
 
-//    public List<Cast> getCast() {
-//        return cast;
-//    }
-//
-//    public void setCast(List<Cast> cast) {
-//        this.cast = cast;
-//    }
+    @JsonIgnore
+    public Classification getClassification() {
+        return classification;
+    }
+
+    public void setClassification(Classification classification) {
+        this.classification = classification;
+
+    }
+    public String getClassificationDescription() {
+        if (classification != null) {
+            return classification.getDescription();
+        }
+        return null;
+    }
+
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
 }

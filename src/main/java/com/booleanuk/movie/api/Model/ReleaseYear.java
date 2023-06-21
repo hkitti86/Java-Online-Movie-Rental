@@ -1,5 +1,6 @@
 package com.booleanuk.movie.api.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +13,7 @@ public class ReleaseYear {
 
     @Column(name = "release_year")
     private Integer releaseYear;
+
 
     public ReleaseYear(){
         super();
@@ -37,4 +39,5 @@ public class ReleaseYear {
     public void setReleaseYear(Integer releaseYear) {
         this.releaseYear = releaseYear;
     }
+
 }

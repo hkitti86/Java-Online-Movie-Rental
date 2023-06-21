@@ -2,6 +2,8 @@ package com.booleanuk.movie.api.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "movie_cast")
 public class Cast {
@@ -47,4 +49,8 @@ public class Cast {
     public void setActor(Actor actor) {
         this.actor = actor;
     }
+
+    public void setActorNames(List<String> actorNames) {
+    }
 }
+

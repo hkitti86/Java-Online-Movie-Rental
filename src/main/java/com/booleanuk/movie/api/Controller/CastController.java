@@ -1,6 +1,7 @@
 package com.booleanuk.movie.api.Controller;
 
 import com.booleanuk.movie.api.Model.Cast;
+
 import com.booleanuk.movie.api.Repository.CastRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,10 @@ public class CastController {
         }
 
         Cast cast = castOptional.get();
+
+        List<String> actorNames = castRepository.findActorNamesByMovieId(cast.getMovieId());
+        cast.setActorNames(actorNames);
+
         return ResponseEntity.ok(cast);
     }
 
