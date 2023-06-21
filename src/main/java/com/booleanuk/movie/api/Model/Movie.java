@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -68,6 +69,18 @@ public class Movie {
         this.synopsis = synopsis;
     }
 
+    public List<String> getCastActorsNames() {
+        if (cast != null && !cast.isEmpty()) {
+            List<String> actorNames = new ArrayList<>();
+            for (Cast castItem : cast) {
+                actorNames.add(castItem.getActor().getName());
+            }
+            return actorNames;
+        }
+        return null;
+    }
+
+    @JsonIgnore
     public List<Cast> getCast() {
         return cast;
     }
