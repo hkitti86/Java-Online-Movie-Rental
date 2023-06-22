@@ -9,6 +9,7 @@ import java.util.List;
 public interface ActorRepository extends JpaRepository<Actor, Integer> {
 
 
+    Actor findByName(String actorName);
 }
 
 

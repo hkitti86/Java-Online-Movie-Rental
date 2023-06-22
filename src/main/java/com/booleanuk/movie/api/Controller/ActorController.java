@@ -28,19 +28,9 @@ public class ActorController {
         return this.actorRepository.findAll();
     }
 
-//    @PostMapping("/actors")
-//    public ResponseEntity<List<Movie>> createActor(@RequestBody Actor actor, @RequestParam("movie_id") List<Integer> movieIds) {
-//        List<Movie> movies = this.movieRepository.findAll();
-//        List<Movie> actorMovies = new ArrayList<>();
-//
-//        for (Movie movie : movies) {
-//            if (movieIds.contains(movie.getId())) {
-//                movie.getActors().add(actor);
-//                actorMovies.add(movie);
-//            }
-//        }
-//
-//        return new ResponseEntity<>(actorMovies, HttpStatus.OK);
-//    }
+    @PostMapping
+    public ResponseEntity createActor(@RequestBody Actor actor) {
+        return new ResponseEntity<>(actorRepository.save(actor), HttpStatus.CREATED);
+    }
 
 }

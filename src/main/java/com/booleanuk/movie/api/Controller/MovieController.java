@@ -70,3 +70,4 @@ public class MovieController {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "This classification is not in the system"));
     }
 }
+
