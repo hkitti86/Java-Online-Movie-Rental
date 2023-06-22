@@ -35,14 +35,16 @@ public class MovieController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Movie> updateMovieById(@PathVariable int id, @RequestBody Movie movie) {
-        Movie movieUpdate = this.movieRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "This movie is not in the system"));
+        Movie movieUpdate = this.movieRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "This movie is not in the system"));
 
         movieUpdate.setId(movie.getId());
-        movieUpdate.setTitle(movieUpdate.getTitle());
-        movieUpdate.setSynopsis(movieUpdate.getSynopsis());
+        movieUpdate.setTitle(movie.getTitle());
+        movieUpdate.setSynopsis(movie.getSynopsis());
+        movieUpdate.setReleaseYear(movie.getReleaseYear());
 
         return new ResponseEntity<Movie>(this.movieRepository.save(movieUpdate), HttpStatus.CREATED);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Movie> deleteMovie(@PathVariable int id) {
