@@ -28,17 +28,19 @@ public class Movie {
     @JsonIgnoreProperties("movie")
     private List<Cast> cast;
 
-
     @ManyToOne
     @JoinColumn(name = "classification")
     @JsonIgnoreProperties({"movies", "classification"})
     private Classification classification;
 
-    public Movie(){
+    @Transient
+    private int classificationId;
+
+    public Movie() {
         super();
     }
 
-    public Movie(String title, String synopsis, String releaseYear){
+    public Movie(String title, String synopsis, String releaseYear) {
         super();
         this.setTitle(title);
         this.synopsis = synopsis;
@@ -89,6 +91,14 @@ public class Movie {
         this.cast = cast;
     }
 
+    public int getClassificationId() {
+        return classificationId;
+    }
+
+    public void setClassificationId(int classificationId) {
+        this.classificationId = classificationId;
+    }
+
     @JsonIgnore
     public Classification getClassification() {
         return classification;
@@ -96,8 +106,8 @@ public class Movie {
 
     public void setClassification(Classification classification) {
         this.classification = classification;
-
     }
+
     public String getClassificationDescription() {
         if (classification != null) {
             return classification.getDescription();
@@ -113,3 +123,4 @@ public class Movie {
         this.releaseYear = releaseYear;
     }
 }
+
