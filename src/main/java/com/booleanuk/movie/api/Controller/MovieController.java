@@ -37,7 +37,7 @@ public class MovieController {
     public ResponseEntity<Movie> updateMovieById(@PathVariable int id, @RequestBody Movie movie) {
         Movie movieUpdate = this.movieRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "This movie is not in the system"));
 
-        movieUpdate.setId(movie.getId());
+        //movieUpdate.setId(movie.getId());
         movieUpdate.setTitle(movie.getTitle());
         movieUpdate.setSynopsis(movie.getSynopsis());
         movieUpdate.setReleaseYear(movie.getReleaseYear());

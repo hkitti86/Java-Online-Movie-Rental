@@ -24,7 +24,7 @@ public class Movie {
     @Column(name = "release_year")
     private String releaseYear;
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = {CascadeType.ALL})
     @JsonIgnoreProperties("movie")
     private List<Cast> cast;
 
@@ -38,10 +38,11 @@ public class Movie {
         super();
     }
 
-    public Movie(String title, String synopsis){
+    public Movie(String title, String synopsis, String releaseYear){
         super();
         this.setTitle(title);
         this.synopsis = synopsis;
+        this.releaseYear = releaseYear;
     }
 
     public int getId() {
